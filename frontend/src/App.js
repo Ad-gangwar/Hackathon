@@ -1,10 +1,12 @@
 import './App.css';
+import Body from './Body';
+
 
 function App() {
   return (
-    <div className="App font-bold">
-      Aditya
-    </div>
+    
+      <Body />
+   
   );
 }
 
