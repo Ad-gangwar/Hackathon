@@ -5,14 +5,13 @@ const SignUpForm = () => {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
   const [capturedImage, setCapturedImage] = useState(null);
-  const [isCameraOn, setIsCameraOn] = useState(false);
+  const [imageCaptured, setImageCaptured] = useState(false);
 
   const startVideo = () => {
     navigator.mediaDevices
       .getUserMedia({ video: true })
       .then((stream) => {
         videoRef.current.srcObject = stream;
-        setIsCameraOn(true);
       })
       .catch((err) => {
         console.error("Error accessing webcam: ", err);
@@ -26,15 +25,21 @@ const SignUpForm = () => {
     context.drawImage(video, 0, 0, canvas.width, canvas.height);
     const imageDataUrl = canvas.toDataURL("image/png");
     setCapturedImage(imageDataUrl);
+    setImageCaptured(true);
 
     // Stop the video stream
     const stream = video.srcObject;
     const tracks = stream.getTracks();
-    tracks.forEach((track) => track.stop());
-    setIsCameraOn(false);
+
+    tracks.forEach((track) => {
+      track.stop();
+    });
+
+    video.srcObject = null;
   };
 
   const downloadImage = () => {
+    setImageCaptured(false);
     setCapturedImage(null);
   };
 
@@ -111,7 +116,7 @@ const SignUpForm = () => {
               className="w-full p-2 rounded border border-gray-300"
               type="text"
               placeholder="State"
-            />
+            ></input>
           </div>
           <div className="mb-6">
             <label className="block text-gray-600 mb-1" htmlFor="dob">
@@ -151,48 +156,40 @@ const SignUpForm = () => {
           <div className="mb-6">
             <label className="block text-gray-600 mb-1">Capture Face</label>
             <div className="flex flex-col items-center">
-              {isCameraOn && (
-                <video
-                  ref={videoRef}
-                  className="w-full rounded border border-gray-300 mb-4"
-                  autoPlay
-                  width="320"
-                  height="240"
-                ></video>
-              )}
-              {!isCameraOn && capturedImage && (
-                <img
-                  src={capturedImage}
-                  alt="Captured"
-                  className="w-full rounded border border-gray-300 mb-4"
-                />
-              )}
-              {!isCameraOn && !capturedImage && (
-                <button
-                  type="button"
-                  className="mt-4 p-2 rounded bg-blue-600 text-white hover:bg-blue-700"
-                  onClick={startVideo}
-                >
-                  Start Camera
-                </button>
-              )}
-              {isCameraOn && (
-                <button
-                  type="button"
-                  className="mt-4 p-2 rounded bg-green-600 text-white hover:bg-green-700"
-                  onClick={captureImage}
-                >
-                  Capture Image
-                </button>
-              )}
+              <video
+                ref={videoRef}
+                className="w-full rounded border border-gray-300"
+                autoPlay
+                width="320"
+                height="240"
+              ></video>
+              <button
+                type="button"
+                className="mt-4 p-2 rounded bg-blue-600 text-white hover:bg-blue-700"
+                onClick={startVideo}
+              >
+                Start Camera
+              </button>
+              <button
+                type="button"
+                className="mt-4 p-2 rounded bg-green-600 text-white hover:bg-green-700"
+                onClick={captureImage}
+              >
+                Capture Image
+              </button>
               <canvas
                 ref={canvasRef}
                 width="320"
                 height="240"
                 className="hidden"
               ></canvas>
-              {capturedImage && (
+              {imageCaptured && (
                 <div className="mt-4">
+                  <img
+                    src={capturedImage}
+                    alt="Captured"
+                    className="w-full rounded border border-gray-300"
+                  />
                   <a
                     href={capturedImage}
                     download="captured-image.png"

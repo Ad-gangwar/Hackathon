@@ -6,6 +6,9 @@ import SignUpPage from './SignUp';
 import Webcam from 'react-webcam';
 import WebcamCapture from './Webcam';
 import AdminDashboard from './AdminDashboard';
+import StudentDashboard from './StudentDashboard';
+import Profile from './Profile';
+import EnrolledCourses from './EnrolledCourses';
 
 const Body = () => {
 
@@ -24,7 +27,21 @@ const Body = () => {
       },
       {
         path: "/Admin",
-        element: <AdminDashboard/>,
+        element: <AdminDashboard />,
+      },
+      {
+        path: "/dashboard",
+        element: <StudentDashboard />,
+        children: [
+          {
+            path: "profile",
+            element: <Profile />,
+          },
+          {
+            path: "enrolled-courses",
+            element: <EnrolledCourses />,
+          },
+        ],
       },
     ]);
   return (
