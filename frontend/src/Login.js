@@ -36,7 +36,7 @@ const LoginPage = () => {
                 id="password"
               />
             </div>
-            <Link to={"/SignUp"}>
+            <Link to={"/dashboard/profile"}>
               <button
                 className="w-full p-2 rounded bg-teal-600 text-white hover:bg-teal-700"
                 type="submit"
