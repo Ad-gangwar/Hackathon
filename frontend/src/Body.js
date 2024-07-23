@@ -5,6 +5,7 @@ import Homepage from './Homepage';
 import SignUpPage from './SignUp';
 import Webcam from 'react-webcam';
 import WebcamCapture from './Webcam';
+import AdminDashboard from './AdminDashboard';
 
 const Body = () => {
 
@@ -20,6 +21,10 @@ const Body = () => {
       {
         path: "/SignUp",
         element: <SignUpPage />,
+      },
+      {
+        path: "/Admin",
+        element: <AdminDashboard/>,
       },
     ]);
   return (
