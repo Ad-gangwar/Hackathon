@@ -1,14 +1,14 @@
 import React from 'react'
 import {createBrowserRouter,RouterProvider} from "react-router-dom";
-import Login from './Login';
-import Homepage from './Homepage';
-import SignUpPage from './SignUp';
+import Login from './Auth/Login';
+import Homepage from './pages/Homepage';
+import SignUpPage from './Auth/SignUp';
 import Webcam from 'react-webcam';
 import WebcamCapture from './Webcam';
-import AdminDashboard from './AdminDashboard';
-import StudentDashboard from './StudentDashboard';
-import Profile from './Profile';
-import EnrolledCourses from './EnrolledCourses';
+import AdminDashboard from './Dashboard/AdminDashboard';
+import StudentDashboard from './Dashboard/Student/StudentDashboard';
+import Profile from './pages/shared/Profile';
+import EnrolledCourses from './Dashboard/Student/EnrolledCourses';
 
 const Body = () => {
 

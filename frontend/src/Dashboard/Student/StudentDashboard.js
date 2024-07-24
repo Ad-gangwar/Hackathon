@@ -1,7 +1,7 @@
 // src/components/StudentDashboard.js
 import React from "react";
 import { Outlet } from "react-router-dom";
-import Sidebar from "./Sidebar";
+import Sidebar from "../Sidebar";
 
 const StudentDashboard = () => {
   return (
