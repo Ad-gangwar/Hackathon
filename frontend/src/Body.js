@@ -2,7 +2,7 @@ import React from 'react'
 import {createBrowserRouter,RouterProvider} from "react-router-dom";
 import Login from './Auth/Login';
 import Homepage from './pages/Homepage';
-import SignUpPage from './Auth/SignUp';
+import SignUpPage from './Auth/Register';
 import Webcam from 'react-webcam';
 import WebcamCapture from './Webcam';
 import AdminDashboard from './Dashboard/AdminDashboard';
@@ -22,7 +22,7 @@ const Body = () => {
         element: <Login />,
       },
       {
-        path: "/SignUp",
+        path: "/register-student",
         element: <SignUpPage />,
       },
       {

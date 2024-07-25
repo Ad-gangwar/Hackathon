@@ -2,7 +2,6 @@ const express = require('express');
 const Student = require('../models/StudentSchema');
 const Teacher = require('../models/TeacherSchema');
 const College = require('../models/CollegeSchema');
-
 const router = express.Router();
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
@@ -11,7 +10,8 @@ const app = express();
 
 router.post('/register', async (req, res) => {
     // Extracting user details from the request body
-    const { email, password, name, role, photo, gender } = req.body;
+    console.log(req.body);
+    const { email, password, name, photo, gender, Class, phone} = req.body;
 
     try {
         // Check if user with the same email already exists
@@ -25,7 +25,7 @@ router.post('/register', async (req, res) => {
         const hashPass = await bcrypt.hash(password, 10);
 
         // Create a new user based on the role
-        let user = new Doctor({ name, email, password: hashPass, gender, role, photo});
+        let user = new Student({ email, password: hashPass, photo, gender,phone, name, Class});
         // console.log(user);
         // Save the user to the database
         await user.save();

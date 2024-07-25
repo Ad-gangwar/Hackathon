@@ -10,6 +10,7 @@ const EnrolledCourses = () => {
           <h3 className="text-lg">Course Name</h3>
           <p>Full Stack MERN Developer</p>
         </div>
+        <button className="btn">Click me</button>
       </div>
     </div>
   );

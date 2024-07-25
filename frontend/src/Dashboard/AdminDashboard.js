@@ -52,14 +52,12 @@ const AdminDashboard = ({ admin }) => {
             {/* Add more fields as needed */}
           </div>
           <div className="flex justify-center">
-            <Link to="/SignUp">
               <button
                 onClick={handleRegisterStudent}
                 className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition duration-300"
               >
                 Register a Student
               </button>
-            </Link>
           </div>
         </div>
       </main>
