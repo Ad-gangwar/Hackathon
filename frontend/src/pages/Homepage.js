@@ -1,8 +1,27 @@
 // src/Homepage.js
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Homepage = () => {
+  const token = localStorage.getItem('eduToken');
+  const user = JSON.parse(localStorage.getItem('eduUser'));
+  const [redirectPath, setRedirectPath] = useState('/login');
+
+  useEffect(() => {
+    if (token) {
+      if (user.role === 'student') {
+        setRedirectPath('/dashboard')
+      }
+      else if (user.role === 'teacher') {
+        setRedirectPath('teacher-dashboard');
+      }
+      else if (user.role === 'college') {
+        setRedirectPath('/Admin');
+      }
+    }
+  }, [token]);
+
+
   return (
     <div className="font-sans bg-gray-50 text-gray-900">
       {/* Header */}
@@ -33,9 +52,9 @@ const Homepage = () => {
           >
             Contact
           </a>
-          <Link to={"/login"}>
+          <Link to={redirectPath}>
             <button className="bg-teal-600 hover:bg-teal-700 text-white py-2 px-4 rounded-lg transition duration-300">
-              Get Started
+              {token ? 'My Dashboard' : 'Get Started'}
             </button>
           </Link>
         </nav>
