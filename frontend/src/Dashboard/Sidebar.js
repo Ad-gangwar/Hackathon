@@ -1,6 +1,6 @@
 // src/components/Sidebar.js
 import React, { useEffect } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import toast from 'react-hot-toast'
 
 const Sidebar = () => {
@@ -20,7 +20,7 @@ const Sidebar = () => {
 
   return (
     <aside className="w-64 bg-gray-800">
-      <div className="p-4 text-center text-3xl font-bold">AstraNex</div>
+      <Link to="/"><div className="p-4 text-center text-3xl font-bold">AstraNex</div></Link>
       <nav>
         <ul>
           <li className="p-4">

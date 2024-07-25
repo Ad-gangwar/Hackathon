@@ -26,7 +26,7 @@ const Homepage = () => {
     <div className="font-sans bg-gray-50 text-gray-900">
       {/* Header */}
       <header className="flex items-center justify-between p-6 bg-gradient-to-r from-teal-500 to-teal-700 text-white shadow-md">
-        <div className="text-3xl font-extrabold">AstraNex</div>
+        <Link to="/"><div className="text-3xl font-extrabold">AstraNex</div></Link>
         <nav className="space-x-6">
           <a
             href="#features"
@@ -65,7 +65,7 @@ const Homepage = () => {
         className="relative h-screen bg-cover bg-center text-white"
         style={{
           backgroundImage:
-            "url('https://via.placeholder.com/1920x1080?text=Hero+Background')",
+            "url('https://thumbor.forbes.com/thumbor/fit-in/1290x/https://www.forbes.com/advisor/wp-content/uploads/2022/07/learning_platform.jpeg.jpg')",
         }}
       >
         <div className="absolute inset-0 bg-black opacity-60"></div>
