@@ -10,7 +10,6 @@ const app = express();
 
 router.post('/register', async (req, res) => {
     // Extracting user details from the request body
-    console.log(req.body);
     const { email, password, name, photo, gender, Class, phone} = req.body;
 
     try {

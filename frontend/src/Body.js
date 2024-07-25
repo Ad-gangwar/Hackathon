@@ -9,6 +9,8 @@ import AdminDashboard from './Dashboard/AdminDashboard';
 import StudentDashboard from './Dashboard/Student/StudentDashboard';
 import Profile from './pages/shared/Profile';
 import EnrolledCourses from './Dashboard/Student/EnrolledCourses';
+import TeacherDashboard from './Dashboard/TeacherDashboard';
+import ScheduleClass from './Dashboard/ScheduleClass';
 
 const Body = () => {
 
@@ -28,6 +30,20 @@ const Body = () => {
       {
         path: "/Admin",
         element: <AdminDashboard />,
+      },
+      {
+        path: "/teacher",
+        element: <TeacherDashboard />,
+        children: [
+          {
+            path: "profile",
+            element: <Profile />,
+          },
+          {
+            path: "schedule-classes",
+            element: <ScheduleClass />,
+          },
+        ],
       },
       {
         path: "/dashboard",

@@ -15,6 +15,7 @@ const Teacher = require('./models/teacherSchema');
 const College = require('./models/collegeSchema');
 
 const authRoutes = require('./routes/auth');
+const checkRoute = require('./routes/recognition');
 
 // Creating an Express application
 const app = express();
@@ -33,6 +34,7 @@ app.get("/", (req, res) => {
 
 // Setting up routes for authentication
 app.use('/auth', authRoutes);
+app.use('/check', checkRoute);
 
 // Connecting to the MongoDB database
 mongoose.connect(URL).then((x) => {
