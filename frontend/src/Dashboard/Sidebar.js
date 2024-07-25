@@ -1,11 +1,26 @@
 // src/components/Sidebar.js
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import toast from 'react-hot-toast'
 
 const Sidebar = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Navigate to the "profile" route when the component mounts
+    navigate("profile");
+  }, [navigate]);
+
+  const handleLogout = ()=>{
+    localStorage.removeItem('eduToken');
+    localStorage.removeItem('eduUser');
+    toast.success('Logged out successfully!');
+    navigate("/");
+  }
+
   return (
     <aside className="w-64 bg-gray-800">
-      <div className="p-4 text-center text-3xl font-bold">AstraNex</div>
+      <Link to="/"><div className="p-4 text-center text-3xl font-bold">AstraNex</div></Link>
       <nav>
         <ul>
           <li className="p-4">
@@ -28,7 +43,7 @@ const Sidebar = () => {
               Enrolled Courses
             </NavLink>
           </li>
-          <li className="p-4 text-gray-300">Logout</li>
+          <button className="btn m-4 py-2 w-100 rounded-lg" onClick={handleLogout}>Logout</button>
         </ul>
       </nav>
     </aside>
