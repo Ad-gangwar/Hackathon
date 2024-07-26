@@ -12,6 +12,13 @@ const ScheduleClass = () => {
         const response = await makeUnauthGetReq("/course/");
         console.log(response.data);
         setCourses(response.data);
+        
+        // Initialize updatedData with fetched courses data
+        const initialData = response.data.reduce((acc, course) => {
+          acc[course._id] = { timing: course.timing || "", roomId: course.roomId || "" };
+          return acc;
+        }, {});
+        setUpdatedData(initialData);
       } catch (error) {
         console.error("Error fetching courses:", error);
       }
@@ -69,7 +76,7 @@ const ScheduleClass = () => {
             type="time"
             className="w-full p-2 rounded-md text-black"
             name="timing"
-            value={course.timing}
+            value={updatedData[course._id]?.timing || ""}
             onChange={(e) => handleChange(e, course._id)}
           />
 
@@ -81,7 +88,7 @@ const ScheduleClass = () => {
             className="w-full p-2 rounded-md text-black"
             placeholder="Enter the room ID"
             name="roomId"
-            value={course.roomId}
+            value={updatedData[course._id]?.roomId || ""}
             onChange={(e) => handleChange(e, course._id)}
           />
           <button
