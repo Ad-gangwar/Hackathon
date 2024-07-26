@@ -1,64 +1,14 @@
 // src/Homepage.js
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import Header from "./shared/Header";
 
 const Homepage = () => {
-  const token = localStorage.getItem('eduToken');
-  const user = JSON.parse(localStorage.getItem('eduUser'));
-  const [redirectPath, setRedirectPath] = useState('/login');
-
-  useEffect(() => {
-    if (token) {
-      if (user.role === 'student') {
-        setRedirectPath('/dashboard')
-      }
-      else if (user.role === 'teacher') {
-        setRedirectPath('teacher-dashboard');
-      }
-      else if (user.role === 'college') {
-        setRedirectPath('/Admin');
-      }
-    }
-  }, [token]);
-
+  
 
   return (
     <div className="font-sans bg-gray-50 text-gray-900">
       {/* Header */}
-      <header className="flex items-center justify-between p-6 bg-gradient-to-r from-teal-500 to-teal-700 text-white shadow-md">
-        <Link to="/"><div className="text-3xl font-extrabold">AstraNex</div></Link>
-        <nav className="space-x-6">
-          <a
-            href="#features"
-            className="hover:text-teal-200 transition duration-300"
-          >
-            Features
-          </a>
-          <a
-            href="#pricing"
-            className="hover:text-teal-200 transition duration-300"
-          >
-            Pricing
-          </a>
-          <a
-            href="#about"
-            className="hover:text-teal-200 transition duration-300"
-          >
-            About Us
-          </a>
-          <a
-            href="#contact"
-            className="hover:text-teal-200 transition duration-300"
-          >
-            Contact
-          </a>
-          <Link to={redirectPath}>
-            <button className="bg-teal-600 hover:bg-teal-700 text-white py-2 px-4 rounded-lg transition duration-300">
-              {token ? 'My Dashboard' : 'Get Started'}
-            </button>
-          </Link>
-        </nav>
-      </header>
+      <Header/>
 
       {/* Hero Section */}
       <section
@@ -232,6 +182,7 @@ const Homepage = () => {
           ))}
         </div>
       </section>
+
 
       {/* Testimonials */}
       <section className="py-16 bg-gray-200">

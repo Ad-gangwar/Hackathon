@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { makeAuthPostReq } from "../utils/serverHelper";
 import uploadImgToCloudinary from "../utils/Cloudinary_Upload";
+import HashLoader from 'react-spinners/HashLoader';
 
 const SignUpForm = () => {
   const videoRef = useRef(null);
@@ -21,6 +22,7 @@ const SignUpForm = () => {
     gender: "male",
     photo: "",
     Class: "",
+    ID: ""
   });
 
   const startVideo = () => {
@@ -50,18 +52,6 @@ const SignUpForm = () => {
       track.stop();
     });
     video.srcObject = null;
-  };
-
-  const downloadImage = () => {
-    setImageCaptured(false);
-    setCapturedImage(null);
-  };
-
-  const handleFileInputChange = async (e) => {
-    const file = e.target.files[0];
-    const data = await uploadImgToCloudinary(file);
-    setCapturedImage(data.url);
-    setStudentData({ ...studentData, photo: data.url });
   };
 
   const handleChange = (e) => {
@@ -102,11 +92,11 @@ const SignUpForm = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-900">
-      <div className="w-full max-w-xl bg-white rounded-xl shadow-lg p-8">
+    <div className="min-h-screen flex items-center justify-center bg-gray-900 p-8">
+      <div className="w-full max-w-3xl bg-white rounded-xl shadow-lg p-10 px-[60px]">
         <div className="text-center mb-8">
           <Link to="/">
-            <h1 className="text-4xl font-bold text-green-600">AstraNex</h1>
+            <h1 className="text-5xl font-bold text-green-600">AstraNex</h1>
           </Link>
           <p className="text-xl text-gray-600 mt-2">Online Registration</p>
         </div>
@@ -123,6 +113,20 @@ const SignUpForm = () => {
               value={studentData.name}
               onChange={handleChange}
               placeholder="Enter your full name"
+            />
+          </div>
+          <div className="mb-4">
+            <label className="form-label" htmlFor="id">
+              Student ID
+            </label>
+            <input
+              className="form-input"
+              type="text"
+              id="id"
+              name="ID"
+              value={studentData.ID}
+              onChange={handleChange}
+              placeholder="Enter your student ID"
             />
           </div>
           <div className="flex gap-5">
@@ -228,7 +232,7 @@ const SignUpForm = () => {
               ></video>
               <button
                 type="button"
-                className="mt-4 p-2 rounded bg-blue-600 text-white hover:bg-blue-700"
+                className="mt-4 p-2 px-3 rounded bg-blue-600 text-white hover:bg-blue-700"
                 onClick={startVideo}
               >
                 Start Camera
@@ -246,32 +250,15 @@ const SignUpForm = () => {
                 height="240"
                 className="hidden"
               ></canvas>
-              {imageCaptured && (
-                <div className="mt-4">
-                  <img
-                    src={capturedImage}
-                    alt="Captured"
-                    className="w-full rounded border border-gray-300"
-                  />
-                  <a
-                    href={capturedImage}
-                    download="captured-image.png"
-                    className="mt-4 p-2 rounded bg-blue-600 text-white hover:bg-blue-700"
-                    onClick={downloadImage}
-                  >
-                    Download Image
-                  </a>
-                </div>
-              )}
             </div>
           </div>
 
           <button
-            className="w-full p-3 rounded bg-green-600 text-white hover:bg-green-700"
+            className="w-full p-3 rounded-lg text-lg mt-5 font-semibold bg-green-600 text-white hover:bg-green-700"
             type="submit"
             disabled={loading}
           >
-            {loading ? "Registering..." : "Register"}
+            {loading ? <HashLoader size={35} color='white' /> : 'Register'}
           </button>
         </form>
       </div>

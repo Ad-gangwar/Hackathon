@@ -5,6 +5,7 @@ import toast from 'react-hot-toast'
 
 const Sidebar = () => {
   const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem('eduUser'));
 
   useEffect(() => {
     // Navigate to the "profile" route when the component mounts
@@ -20,14 +21,14 @@ const Sidebar = () => {
 
   return (
     <aside className="w-64 bg-gray-800">
-      <Link to="/"><div className="p-4 text-center text-3xl font-bold">AstraNex</div></Link>
-      <nav>
+      <Link to="/"><div className="p-6 text-center text-3xl font-bold border-b-2 border-gray-700">AstraNex</div></Link>
+      <nav className="ps-4 mt-5 border-b-2 border-gray-700">
         <ul>
-          <li className="p-4">
+          <li className="p-4 w-100">
             <NavLink
               to="profile"
               className={({ isActive }) =>
-                isActive ? "text-yellow-500" : "text-gray-300"
+                isActive ? "text-[#ffd60a] text-xl font-bold" : "text-gray-300"
               }
             >
               My Profile
@@ -35,17 +36,17 @@ const Sidebar = () => {
           </li>
           <li className="p-4">
             <NavLink
-              to="enrolled-courses"
+              to={user.role === "student" ? "enrolled-courses" : "schedule-classes"}
               className={({ isActive }) =>
-                isActive ? "text-yellow-500" : "text-gray-300"
+                isActive ? "text-[#ffd60a] text-xl font-bold" : "text-gray-300"
               }
             >
-              Enrolled Courses
+              {user.role === "student" ? "Enrolled Courses" : "Schedule Classes"}
             </NavLink>
           </li>
-          <button className="btn m-4 py-2 w-100 rounded-lg" onClick={handleLogout}>Logout</button>
         </ul>
       </nav>
+      <button className="btn m-4 py-[10px] mt-12 ml-8 w-100 rounded-lg bg-yellow-400 text-black text-[17px] hover:bg-yellow-500" onClick={handleLogout}>Logout</button>
     </aside>
   );
 };

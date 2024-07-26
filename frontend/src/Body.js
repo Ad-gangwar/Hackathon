@@ -3,10 +3,12 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Login from './Auth/Login';
 import Homepage from './pages/Homepage';
 import SignUpPage from './Auth/Register';
-import AdminDashboard from './Dashboard/AdminDashboard';
+import AdminDashboard from './Dashboard/Admin/AdminDashboard';
 import StudentDashboard from './Dashboard/Student/StudentDashboard';
 import Profile from './pages/shared/Profile';
 import EnrolledCourses from './Dashboard/Student/EnrolledCourses';
+import TeacherDashboard from './Dashboard/Teacher/TeacherDashboard';
+import ScheduleClass from './Dashboard/Teacher/ScheduleClass';
 
 const Body = () => {
 
@@ -38,6 +40,20 @@ const Body = () => {
           {
             path: "enrolled-courses",
             element: <EnrolledCourses />,
+          },
+        ],
+      },
+      {
+        path: "/teacher-dashboard",
+        element: <TeacherDashboard />,
+        children: [
+          {
+            path: "profile",
+            element: <Profile />,
+          },
+          {
+            path: "schedule-classes",
+            element: <ScheduleClass />,
           },
         ],
       },

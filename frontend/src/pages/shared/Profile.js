@@ -3,12 +3,12 @@ import React from "react";
 const Profile = () => {
   const user = JSON.parse(localStorage.getItem('eduUser'));
   return (
-    <div>
+    <div className="py-7 px-12">
       <h1 className="text-4xl mb-6 font-bold">My Profile</h1>
       <div className="bg-gray-800 p-6 rounded-lg mb-4">
         <div className="flex items-center mb-4">
-          <div className="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center text-white text-2xl">
-            <img src={user.photo} className="object-fit"></img>
+          <div className="w-16 h-16 bg-transparent rounded-full flex items-center justify-center text-white text-2xl">
+            <img src={user.photo} className="object-fit rounded-full w-full h-full"></img>
           </div>
           <div className="ml-4">
             <h2 className="text-xl font-semibold">{user.name}</h2>

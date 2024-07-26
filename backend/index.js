@@ -16,6 +16,7 @@ const College = require('./models/collegeSchema');
 
 const authRoutes = require('./routes/auth');
 const checkRoute = require('./routes/recognition');
+const courseRoute = require('./routes/course');
 
 // Creating an Express application
 const app = express();
@@ -35,6 +36,7 @@ app.get("/", (req, res) => {
 // Setting up routes for authentication
 app.use('/auth', authRoutes);
 app.use('/check', checkRoute);
+app.use('/course', courseRoute);
 
 // Connecting to the MongoDB database
 mongoose.connect(URL).then((x) => {

@@ -10,7 +10,7 @@ const app = express();
 
 router.post('/register', async (req, res) => {
     // Extracting user details from the request body
-    const { email, password, name, photo, gender, Class, phone} = req.body;
+    const { email, password, name, photo, gender, Class, phone, ID} = req.body;
 
     try {
         // Check if user with the same email already exists
@@ -24,7 +24,7 @@ router.post('/register', async (req, res) => {
         const hashPass = await bcrypt.hash(password, 10);
 
         // Create a new user based on the role
-        let user = new Student({ email, password: hashPass, photo, gender,phone, name, Class});
+        let user = new Student({ email, password: hashPass, photo, gender,phone, name, Class, ID});
         // console.log(user);
         // Save the user to the database
         await user.save();

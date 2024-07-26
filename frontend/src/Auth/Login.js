@@ -51,16 +51,16 @@ const LoginPage = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-900">
-      <div className="flex w-[800px] h-[600px] bg-white rounded-xl shadow-lg overflow-hidden">
-        <div className="w-1/3 bg-gradient-to-b from-teal-500 to-teal-700 flex items-center justify-center">
+      <div className="flex w-[800px] h-[600px] bg-white rounded-xl rounded-bl-[65px] overflow-hidden">
+        <div className="w-2/5 bg-gradient-to-b from-teal-500 to-teal-700 flex items-center justify-center m-3 rounded-xl rounded-bl-[65px] rounded-tr-[65px]">
           <div className="text-white text-6xl font-bold">A</div>
         </div>
-        <div className="w-2/3 p-6 mt-16">
+        <div className="w-3/5 p-6 px-8 mt-16">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
             We are <span className="text-teal-600">AstraNex</span>
           </h2>
           <p className="text-gray-600 mb-6">
-            Welcome back! Log in to your account.
+            <span className="text-2xl">👋</span> Welcome back! Log in to your account.
           </p>
           <form>
             <div className="mb-8">
@@ -68,8 +68,9 @@ const LoginPage = () => {
                 Email
               </label>
               <input
-                className="w-full p-2 rounded bg-gray-200 text-gray-900"
+                className="w-full p-3 rounded-lg bg-gray-200 text-gray-900"
                 type="email"
+                placeholder="Enter your Email"
                 id="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -80,15 +81,16 @@ const LoginPage = () => {
                 Password
               </label>
               <input
-                className="w-full p-2 rounded bg-gray-200 text-gray-900"
+                className="w-full p-3 rounded-lg bg-gray-200 text-gray-900"
                 type="password"
                 id="password"
+                placeholder="Enter your password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
             <button
-              className="w-full p-2 rounded bg-teal-600 text-white hover:bg-teal-700"
+              className="w-full p-3 rounded-full bg-teal-600 text-white hover:bg-teal-700"
               type="submit" onClick={handleSubmit}
             >
               {loading ? <HashLoader size={35} color='white' /> : 'Login'}
