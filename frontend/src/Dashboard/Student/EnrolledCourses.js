@@ -1,11 +1,31 @@
 // src/components/EnrolledCourses.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { toast } from 'react-hot-toast';
+import { makeUnauthGetReq } from "../../utils/serverHelper";
+import { useNavigate } from "react-router-dom";
 
 const EnrolledCourses = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [courses, setCourses] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchCourses = async () => {
+      try {
+        const response = await makeUnauthGetReq("/course/");
+        console.log(response.data);
+        setCourses(response.data);
+      } catch (error) {
+        console.error("Error fetching courses:", error);
+      }
+    };
+
+    fetchCourses();
+  }, []);
+
   const student = JSON.parse(localStorage.getItem("eduUser"));
-  const handleClick = async () => {
+  const handleClick = async (roomId) => {
     if (!student || !student.photo) {
       setError("Student information is missing or incomplete.");
       return;
@@ -31,7 +51,8 @@ const EnrolledCourses = () => {
       console.log("Response:", data);
 
       // Optional: handle success feedback
-      alert("Recognition process completed. Check console for details.");
+      toast.success("Recognition process completed. Check console for details.");
+      navigate(`https://google-meet-clone-lxn0.onrender.com/${roomId}`);
     } catch (err) {
       console.error("Error during recognition:", err);
       setError("An error occurred during recognition. Please try again.");
@@ -41,24 +62,24 @@ const EnrolledCourses = () => {
   };
 
   return (
-    <div>
-      <h1 className="text-3xl mb-4">Enrolled Courses</h1>
-      <div className="bg-gray-800 p-6 rounded-lg">
-        <div className="mb-4">
-          <h3 className="text-lg">Course Name</h3>
-          <p>Full Stack MERN Developer</p>
-        </div>
-        <button
-          className={`btn ${loading ? "opacity-50 cursor-not-allowed" : ""}`}
-          onClick={handleClick}
-          disabled={loading}
+    <div className="flex flex-wrap justify-center gap-4 p-4 text-white">
+      {courses.map((course) => (
+        <div
+          key={course._id}
+          className="bg-gray-800 p-6 rounded-lg shadow-lg max-w-xs w-full my-4 flex flex-col justify-between"
         >
-          {loading ? "Processing..." : "Click me"}
-        </button>
-        {error && (
-          <div className="mt-4 p-2 bg-red-500 text-white rounded">{error}</div>
-        )}
-      </div>
+          <h2 className="text-xl font-semibold">{course.name} Class</h2>
+          <p className="text_para mb-3">{course.code}</p>
+          <p className="mb-2">Teacher: {course.teacher}</p>
+          <p>Timing: {course.timing}</p>
+          <button
+            className="btn text-[18px] py-[12px] rounded-lg bg-yellow-500 hover:bg-yellow-600 mt-4"
+            onClick={() => handleClick(course.roomId)}
+          >
+            Take Class
+          </button>
+        </div>
+      ))}
     </div>
   );
 };
