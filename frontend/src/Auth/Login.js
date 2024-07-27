@@ -4,12 +4,19 @@ import toast from 'react-hot-toast';
 import { useNavigate } from "react-router-dom";
 import { makeUnauthPostReq } from '../utils/serverHelper';
 import HashLoader from 'react-spinners/HashLoader';
+import Carousel from "../pages/shared/Carousel";
+import idd from '../assets/Images/login-img2.png'
 
 const LoginPage = () => {
   let navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const slides = [
+    'https://github.com/Ad-gangwar/Web-Relay/blob/main/Screenshot_2024-07-27_151555-removebg-preview.png?raw=true',
+    'https://github.com/Ad-gangwar/Web-Relay/blob/main/Screenshot_2024-07-27_151618-removebg-preview.png?raw=true'
+  ]
 
   const handleSubmit = async (e) => {
     setLoading(true);
@@ -27,17 +34,17 @@ const LoginPage = () => {
         localStorage.setItem("eduUser", JSON.stringify(response.data));
         let role = response.data.role;
         toast.success("Logged in Successfully!");
-        
-        if(role === "student"){
+
+        if (role === "student") {
           navigate("/dashboard")
         }
-        else if(role === "college"){
+        else if (role === "college") {
           navigate("/Admin")
         }
-        else if(role === "teacher"){
+        else if (role === "teacher") {
           navigate("/")
         }
-        
+
       } else {
         toast.error("Enter valid Credentials!");
       }
@@ -53,8 +60,13 @@ const LoginPage = () => {
     <div className="min-h-screen flex items-center justify-center bg-gray-900">
       <div className="flex w-[800px] h-[600px] bg-white rounded-xl rounded-bl-[65px] overflow-hidden">
         <div className="w-2/5 bg-gradient-to-b from-teal-500 to-teal-700 flex items-center justify-center m-3 rounded-xl rounded-bl-[65px] rounded-tr-[65px]">
-          <div className="text-white text-6xl font-bold">A</div>
+          <Carousel autoSlide={true} >
+            {[...slides.map((s) => (
+              <img src={s} />
+            ))]}
+          </Carousel>
         </div>
+
         <div className="w-3/5 p-6 px-8 mt-16">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
             We are <span className="text-teal-600">AstraNex</span>

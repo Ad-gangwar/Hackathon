@@ -1,8 +1,8 @@
-// src/components/EnrolledCourses.js
 import React, { useState, useEffect } from "react";
 import { toast } from 'react-hot-toast';
 import { makeUnauthGetReq } from "../../utils/serverHelper";
 import { useNavigate } from "react-router-dom";
+import HashLoader from 'react-spinners/HashLoader';
 
 const EnrolledCourses = () => {
   const [error, setError] = useState(null);
@@ -62,24 +62,35 @@ const EnrolledCourses = () => {
   };
 
   return (
-    <div className="flex flex-wrap justify-center gap-4 p-4 text-white">
-      {courses.map((course) => (
-        <div
-          key={course._id}
-          className="bg-gray-800 p-6 rounded-lg shadow-lg max-w-xs w-full my-4 flex flex-col justify-between"
-        >
-          <h2 className="text-xl font-semibold">{course.name} Class</h2>
-          <p className="text_para mb-3">{course.code}</p>
-          <p className="mb-2">Teacher: {course.teacher}</p>
-          <p>Timing: {course.timing}</p>
-          <button
-            className="btn text-[18px] py-[12px] rounded-lg bg-yellow-500 mt-5 hover:bg-yellow-600"
-            onClick={() => handleClick(course.roomId)}
-          >
-            Take Class
-          </button>
+    <div className="relative">
+      {loading && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50">
+          <div className="text-center">
+            <HashLoader color="#FBBF24" />
+            <p className="text-white mt-4">Hang on. Your class is starting.</p>
+          </div>
         </div>
-      ))}
+      )}
+
+      <div className="flex flex-wrap justify-center gap-4 p-4 text-white">
+        {courses.map((course) => (
+          <div
+            key={course._id}
+            className="bg-gray-800 p-6 rounded-lg shadow-lg max-w-xs w-full my-4 flex flex-col justify-between"
+          >
+            <h2 className="text-xl font-semibold">{course.name} Class</h2>
+            <p className="text_para mb-3">{course.code}</p>
+            <p className="mb-2">Teacher: {course.teacher}</p>
+            <p>Timing: {course.timing}</p>
+            <button
+              className="btn text-[18px] py-[12px] rounded-lg bg-yellow-500 mt-5 hover:bg-yellow-600"
+              onClick={() => handleClick(course.roomId)}
+            >
+              Take Class
+            </button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

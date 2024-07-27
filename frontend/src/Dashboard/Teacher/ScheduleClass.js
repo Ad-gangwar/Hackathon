@@ -95,7 +95,7 @@ const ScheduleClass = () => {
             className="btn rounded-lg bg-yellow-500 mt-8 hover:bg-yellow-600"
             onClick={(e) => handleUpdate(e, course._id)}
           >
-            Update
+            Schedule
           </button>
         </div>
       ))}
