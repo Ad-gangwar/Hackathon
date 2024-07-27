@@ -8,7 +8,7 @@ const Profile = () => {
       <div className="bg-gray-800 p-6 rounded-lg mb-4">
         <div className="flex items-center mb-4">
           <div className="w-16 h-16 bg-transparent rounded-full flex items-center justify-center text-white text-2xl">
-            <img src={user.photo} className="object-fit rounded-full w-full h-full"></img>
+            <img src={user.photo? user.photo : "https://www.tenforums.com/attachments/user-accounts-family-safety/322690d1615743307t-user-account-image-log-user.png?s=1d3d7463d4822363d9b8aea2ac1c921a"} className="object-fit rounded-full w-full h-full"></img>
           </div>
           <div className="ml-4">
             <h2 className="text-xl font-semibold">{user.name}</h2>

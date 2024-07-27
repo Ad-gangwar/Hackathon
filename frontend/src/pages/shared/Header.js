@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Header() {
   const token = localStorage.getItem('eduToken');
   const user = JSON.parse(localStorage.getItem('eduUser'));
   const [redirectPath, setRedirectPath] = useState('/login');
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (token) {
@@ -12,13 +13,13 @@ export default function Header() {
         setRedirectPath('/dashboard')
       }
       else if (user.role === 'teacher') {
-        setRedirectPath('teacher-dashboard');
+        setRedirectPath('/teacher-dashboard');
       }
       else if (user.role === 'college') {
         setRedirectPath('/Admin');
       }
     }
-  }, [token]);
+  }, [token, user]);
 
   return (
     <div>
@@ -38,7 +39,7 @@ export default function Header() {
             Pricing
           </a>
           <a
-            href="#about"
+            href="/about"
             className="hover:text-teal-200 transition duration-300"
           >
             About Us
@@ -49,11 +50,9 @@ export default function Header() {
           >
             Contact
           </a>
-          <Link to={redirectPath}>
-            <button className="bg-teal-600 hover:bg-teal-700 text-white py-2 px-4 rounded-lg transition duration-300">
+            <button className="bg-teal-600 hover:bg-teal-700 text-white py-2 px-4 rounded-lg transition duration-300" onClick={() => navigate(redirectPath)}>
               {token ? 'My Dashboard' : 'Get Started'}
             </button>
-          </Link>
         </nav>
       </header>
     </div>

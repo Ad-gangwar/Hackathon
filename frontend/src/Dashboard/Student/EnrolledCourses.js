@@ -73,7 +73,7 @@ const EnrolledCourses = () => {
           <p className="mb-2">Teacher: {course.teacher}</p>
           <p>Timing: {course.timing}</p>
           <button
-            className="btn text-[18px] py-[12px] rounded-lg bg-yellow-500 hover:bg-yellow-600 mt-4"
+            className="btn text-[18px] py-[12px] rounded-lg bg-yellow-500 mt-5 hover:bg-yellow-600"
             onClick={() => handleClick(course.roomId)}
           >
             Take Class

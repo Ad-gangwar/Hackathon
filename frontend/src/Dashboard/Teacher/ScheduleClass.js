@@ -92,7 +92,7 @@ const ScheduleClass = () => {
             onChange={(e) => handleChange(e, course._id)}
           />
           <button
-            className="btn rounded-lg bg-yellow-500 hover:bg-yellow-600 mt-4"
+            className="btn rounded-lg bg-yellow-500 mt-8 hover:bg-yellow-600"
             onClick={(e) => handleUpdate(e, course._id)}
           >
             Update
