@@ -34,19 +34,19 @@ export default function Header() {
           </a>
           <a
             href="#pricing"
-            className="hover:text-teal-200 transition duration-300"
+            className="hover:text-teal-200 "
           >
             Pricing
           </a>
           <a
             href="/about"
-            className="hover:text-teal-200 transition duration-300"
+            className="hover:text-teal-200 "
           >
             About Us
           </a>
           <a
-            href="#contact"
-            className="hover:text-teal-200 transition duration-300"
+            href="/contact"
+            className="hover:text-teal-200"
           >
             Contact
           </a>

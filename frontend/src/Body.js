@@ -10,6 +10,7 @@ import EnrolledCourses from './Dashboard/Student/EnrolledCourses';
 import TeacherDashboard from './Dashboard/Teacher/TeacherDashboard';
 import ScheduleClass from './Dashboard/Teacher/ScheduleClass';
 import About from './pages/About';
+import Contact from './pages/Contact/Contact';
 
 const Body = () => {
 
@@ -21,6 +22,10 @@ const Body = () => {
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
       },
       {
         path: "/register-student",
