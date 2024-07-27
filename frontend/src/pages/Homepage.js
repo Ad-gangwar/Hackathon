@@ -2,14 +2,18 @@
 import React, { useEffect, useState } from "react";
 import Header from "./shared/Header";
 import Footer from "./shared/Footer";
+import HighlightText from "./shared/HighlightText";
+import BannerImage1 from "../assets/Images/aboutus1.webp";
+import BannerImage2 from "../assets/Images/aboutus2.webp";
+import BannerImage3 from "../assets/Images/aboutus3.webp";
 
 const Homepage = () => {
-  
+
 
   return (
     <div className="font-sans bg-gray-50 text-gray-900">
       {/* Header */}
-      <Header/>
+      <Header />
 
       {/* Hero Section */}
       <section
@@ -39,8 +43,8 @@ const Homepage = () => {
       </section>
 
       {/* Key Features */}
-      <section id="features" className="py-16 px-6 bg-gray-100">
-        <h2 className="text-3xl font-extrabold text-center mb-12">
+      <section id="features" className="py-16 lg:px-[120px] bg-gray-400">
+        <h2 className="text-[45px] font-[750] text-center mb-12">
           Key Features
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
@@ -184,9 +188,30 @@ const Homepage = () => {
         </div>
       </section>
 
+      {/* About us */}
+      <section className="bg-richblack-700">
+        <div className="relative mx-auto flex w-10/12 max-w-maxContent flex-col justify-between gap-10 text-center text-white">
+          <header className="mx-auto pb-20 text-4xl font-semibold lg:w-[70%]">
+            Driving Innovation in Online Education for a
+            <HighlightText text={"Brighter Future"} />
+            <p className="mx-auto mt-3 text-center text-base font-medium text-richblack-300 lg:w-[95%]">
+              Astranex is at the forefront of driving innovation in online
+              education. We're passionate about creating a brighter future by
+              offering cutting-edge solutions, leveraging emerging technologies,
+              and nurturing a vibrant learning community.
+            </p>
+          </header>
+          <div className="sm:h-[70px] lg:h-[150px]"></div>
+          <div className="absolute bottom-0 left-[50%] grid w-[100%] translate-x-[-50%] translate-y-[30%] grid-cols-3 gap-3 lg:gap-5">
+            <img src={BannerImage1} alt="" />
+            <img src={BannerImage2} alt="" />
+            <img src={BannerImage3} alt="" />
+          </div>
+        </div>
+      </section>
 
       {/* Testimonials */}
-      <section className="py-16 bg-gray-200">
+      <section className="py-16 bg-gray-400">
         <h2 className="text-3xl font-extrabold text-center mb-12">
           What Our Users Say
         </h2>
@@ -213,8 +238,8 @@ const Homepage = () => {
           ))}
         </div>
       </section>
-      
-      <Footer/>
+
+      <Footer />
     </div>
   );
 };

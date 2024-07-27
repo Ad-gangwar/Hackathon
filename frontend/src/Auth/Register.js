@@ -223,13 +223,22 @@ const SignUpForm = () => {
           <div className="mb-6">
             <label className="form-label">Capture Face</label>
             <div className="flex flex-col items-center">
-              <video
-                ref={videoRef}
-                className="w-full rounded border border-gray-300"
-                autoPlay
-                width="320"
-                height="240"
-              ></video>
+              {!imageCaptured && (
+                <video
+                  ref={videoRef}
+                  className="w-full rounded border border-gray-300"
+                  autoPlay
+                  width="320"
+                  height="240"
+                ></video>
+              )}
+              {imageCaptured && capturedImage && (
+                <img
+                  src={capturedImage}
+                  alt="Captured"
+                  className="w-full rounded border border-gray-300"
+                />
+              )}
               <button
                 type="button"
                 className="mt-4 p-2 px-3 rounded bg-blue-600 text-white hover:bg-blue-700"
